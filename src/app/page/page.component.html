@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">HOME</div>
+    <p class="content-sub-header mb-1">
+      Semaforos
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <!-- Kick start -->
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title text-center">ADMINISTRA TUS SEMAFOROS</h4>
+      </div>
+      <div class="container row cont_central">
+        <div class="col-md-6 cont_central_part1">
+          <button type="button" (click)="startHilos()" class="btn btn-primary">
+            Encender los hilos
+          </button>
+          <button type="button" (click)="startAll()" class="btn btn-success">
+            Encender semaforos
+          </button>
+          <div class="btn_stopOne">
+            <button type="submit" (click)="stopOneSem()" class="btn btn-secondary">
+              Apagar un semaforo
+            </button>
+            <input [(ngModel)]="semaforo" class="form-control" id="semaforo" type="text">
+          </div>
+          <div class="btn_stopOne">
+            <button type="submit" (click)="startOneSem()" class="btn btn-success">
+              Encender un semaforo
+            </button>
+            <input [(ngModel)]="semaforostart" class="form-control" id="semaforostar" type="text" >
+          </div>
+
+          <div class="btn_stopOne">
+            <button type="submit" (click)="changeFreq()" class="btn btn-secondary">
+              Cambiar Frecuencia
+            </button>
+            <input [(ngModel)]="freq" class="form-control" id="freq" type="text" >
+            </div>
+            <div class="btn_stopOne">
+              <button type="submit" (click)="putWarning()" class="btn btn-warning">
+                Cambiar warning sem
+              </button>
+              <input [(ngModel)]="semwarning" class="form-control" id="semwarning" type="text" >
+              </div>
+            <div class="btn_stopOne">
+              <button type="submit" (click)="changeFreqSem()" class="btn btn-danger">
+                cambiar fecuencia de uno
+              </button>
+              <input [(ngModel)]="freqInd" class="form-control" id="freqInd" type="text" >
+              <input [(ngModel)]="sem" class="form-control" id="sem" type="text" >
+              </div>
+
+        </div>
+
+        <div class="col-md-6 cont_central_part2">
+          <button type="button" (click)="stopAll()" class="btn btn-danger">Apagar</button>
+          <button type="button" (click)="warningAll()" class="btn btn-warning">Modo warning</button>
+          <button type="button" (click)="semEsquina()" class="btn btn-info">
+            Semaforo de esquina
+          </button>
+          <button type="button" (click)="startPULSADORES()" class="btn btn-danger">
+            Usar pulsadores
+           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
