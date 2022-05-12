@@ -13,9 +13,12 @@
     <div id="kick-start" class="card">
       <div class="card-header">
         <h4 class="card-title text-center">ADMINISTRA TUS SEMAFOROS</h4>
+
       </div>
       <div class="container row cont_central">
+        <input [(ngModel)]="apiUrl" class="form-control" id="apiUrl" type="text" >
         <div class="col-md-6 cont_central_part1">
+
           <button type="button" (click)="startHilos()" class="btn btn-primary">
             Encender los hilos
           </button>
@@ -62,6 +65,9 @@
           <button type="button" (click)="warningAll()" class="btn btn-warning">Modo warning</button>
           <button type="button" (click)="semEsquina()" class="btn btn-info">
             Semaforo de esquina
+          </button>
+          <button type="button" (click)="testComunicationSping()" class="btn btn-info">
+            Prueba Consumo api
           </button>
           <button type="button" (click)="startPULSADORES()" class="btn btn-danger">
             Usar pulsadores

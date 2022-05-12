@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RequestService } from '../service/request.service.service'
+
 import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-page',
@@ -8,23 +10,30 @@ import Swal from 'sweetalert2';
   styleUrls: ['./page.component.scss']
 })
 
+
 export class PageComponent {
 
+
+  client
   semaforo: any = '';
   freq: any = '';
   semaforostart: any = '';
   freqInd: any = '';
   sem: any = '';
   semwarning: any = '';
+  apiUrl :any= '';
 
   constructor(
-    private request: RequestService
+    private request: RequestService,
+    private _httpClient: HttpClient
+
+
   ) {}
 
   ngOnInit() {}
 
   startHilos() {
-    this.request.queryGetAdministrator('/start_hilos');
+    this.request.queryGetAdministrator(`${this.apiUrl}/start_hilos`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Encendiste todos los hilos de los semaforos',
@@ -33,7 +42,7 @@ export class PageComponent {
     })
   }
   startAll() {
-    this.request.queryGetAdministrator('/start');
+    this.request.queryGetAdministrator(`${this.apiUrl}/start`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Encendiste todos los semaforos',
@@ -43,7 +52,7 @@ export class PageComponent {
   }
 
   semEsquina() {
-    this.request.queryGetAdministrator('/sync');
+    this.request.queryGetAdministrator(`${this.apiUrl}/sync`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Los semaforos nunca van a ser los mismos',
@@ -52,7 +61,7 @@ export class PageComponent {
     })
   }
   startPULSADORES(){
-    this.request.queryGetAdministrator('/pulsadores');
+    this.request.queryGetAdministrator(`${this.apiUrl}/pulsadores`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Ya puede presionar los pulsadores para dejar en rojo',
@@ -61,7 +70,7 @@ export class PageComponent {
     })
   }
   warningAll() {
-    this.request.queryGetAdministrator(`/warning`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/warning`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Ya quedaron en warning los dos',
@@ -71,7 +80,7 @@ export class PageComponent {
   }
 
   stopAll() {
-    this.request.queryGetAdministrator(`/stop`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/stop`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Ya apagaste todos los semaforos',
@@ -81,7 +90,7 @@ export class PageComponent {
   }
 
   stopOneSem() {
-    this.request.queryGetAdministrator(`/stop/sem${this.semaforo}`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/stop/sem${this.semaforo}`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Ya apagaste ese semaforo',
@@ -91,7 +100,7 @@ export class PageComponent {
   }
 
   startOneSem() {
-    this.request.queryGetAdministrator(`/stop/sem${this.semaforostart}`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/stop/sem${this.semaforostart}`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Ya prendiste ese semaforo',
@@ -101,7 +110,7 @@ export class PageComponent {
   }
 
   changeFreq() {
-    this.request.queryGetAdministrator(`/frecuencia/${this.freq}`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/frecuencia/${this.freq}`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Cambiaste de frecuencia',
@@ -110,7 +119,7 @@ export class PageComponent {
     })
   }
   putWarning(){
-    this.request.queryGetAdministrator(`/warning/sem${this.semwarning}`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/warning/sem${this.semwarning}`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Ya prendiste ese semaforo',
@@ -119,7 +128,7 @@ export class PageComponent {
     })
   }
   changeFreqSem(){
-    this.request.queryGetAdministrator(`/${this.freqInd}/sem${this.sem}`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/${this.freqInd}/sem${this.sem}`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Cambiaste de frecuencia',
@@ -127,5 +136,11 @@ export class PageComponent {
       confirmButtonText: 'Ok'
     })
   }
+
+  testComunicationSping(){
+this._httpClient.get("https://localhost:6060/register").subscribe(
+  data => console.log(data),
+  error => console.error(error))
+  };
 
 }

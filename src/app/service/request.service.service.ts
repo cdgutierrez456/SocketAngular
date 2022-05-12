@@ -15,8 +15,8 @@ export class RequestService {
   ) { }
 
   queryGetAdministrator(route: string) {
-    console.log(environment.apiUrl.concat(route));
-     this.http.get(environment.apiUrl.concat(route)
+    console.log((route));
+     this.http.get((route)
     ).subscribe(data =>{
       console.log(data)
     },error =>  console.log(error));
