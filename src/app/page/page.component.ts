@@ -138,9 +138,9 @@ export class PageComponent {
   }
 
   testComunicationSping(){
-this._httpClient.get("https://localhost:6060/register").subscribe(
+this._httpClient.get("http://wmeterws.pro2umanizales.com:6060/register").subscribe(
   data => console.log(data),
-  error => console.error(error))
+  error => console.log(error))
   };
 
 }
