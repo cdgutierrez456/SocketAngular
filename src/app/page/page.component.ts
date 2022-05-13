@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RequestService } from '../service/request.service.service'
 
 import Swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-page',
@@ -22,6 +22,8 @@ export class PageComponent {
   sem: any = '';
   semwarning: any = '';
   apiUrl :any= '';
+  data : any='';
+  arr = [];
 
   constructor(
     private request: RequestService,
@@ -29,8 +31,17 @@ export class PageComponent {
 
 
   ) {}
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'text/html',
+      'Access-Control-Allow-Origin' : '*',
+      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS'
+    })
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   startHilos() {
     this.request.queryGetAdministrator(`${this.apiUrl}/start_hilos`);
@@ -138,9 +149,8 @@ export class PageComponent {
   }
 
   testComunicationSping(){
-this._httpClient.get("http://wmeterws.pro2umanizales.com:6060/register").subscribe(
-  data => console.log(data),
-  error => console.log(error))
+this._httpClient.get("https://wmeterws.pro2umanizales.com/register").subscribe(
+  data => console.log(data))
   };
 
 }
