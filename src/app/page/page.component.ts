@@ -44,7 +44,7 @@ export class PageComponent {
   }
 
   startHilos() {
-    this.request.queryGetAdministrator(`${this.apiUrl}/start_hilos`);
+    this.request.queryGetAdministrator(`${this.apiUrl}/start_hilos/`);
     Swal.fire({
       title: 'Hecho!',
       text: 'Encendiste todos los hilos de los semaforos',
