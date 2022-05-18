@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RequestService } from '../service/request.service.service'
+import { RequestService } from '../service/request.service.service';
+import { DataTableServiceService, Register } from 'app/service/data-table/data-table-service.service';
 
 import Swal from 'sweetalert2';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
@@ -23,14 +24,15 @@ export class PageComponent {
   semwarning: any = '';
   apiUrl :any= '';
   data : any='';
-  arr = [];
+  objDB: any;
+  private dataEjemplo: Register[] = []
 
   constructor(
     private request: RequestService,
-    private _httpClient: HttpClient
-
-
+    private _httpClient: HttpClient,
+    private dataTableService: DataTableServiceService,
   ) {}
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'text/html',
@@ -40,7 +42,11 @@ export class PageComponent {
   }
 
   ngOnInit() {
-
+    this.dataTableService.registers.subscribe(msg => {
+      this.dataEjemplo.push(msg)
+      console.log(this.dataEjemplo)
+    })
+    // this.testComunicationSping()
   }
 
   startHilos() {
@@ -149,8 +155,11 @@ export class PageComponent {
   }
 
   testComunicationSping(){
-this._httpClient.get("https://wmeterws.pro2umanizales.com/register").subscribe(
-  data => console.log(data))
+    this._httpClient.get("https://wmeterws.pro2umanizales.com/register")
+      .subscribe(data => {
+        this.objDB = data;
+        /* console.log("Data peticion ", data) */
+      })
   };
 
 }
